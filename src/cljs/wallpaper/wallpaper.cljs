@@ -27,11 +27,15 @@
             j (range 1 300)
             :let [x (+ a (* i (/ size 150)))
                   y (+ b (* j (/ size 150)))
-                  c (int (+ (* x x) (* y y)))]
-            :when (even? c)]
-      (-> ctx
-          (fill-style "rgb(200,0,0")
-          (fill-rect (* step  i) (* step j) 2 2)))))
+                  c (int (+ (* x x) (* y y)))]]
+      (when (zero? (mod c 3))
+        (-> ctx
+            (fill-style "rgb(100,25,25")
+            (fill-rect (* step  i) (* step j) 2 2)))
+      (when (zero? (mod c 2))
+        (-> ctx
+            (fill-style "rgb(200,50,50")
+            (fill-rect (* step  i) (* step j) 2 2))))))
 
 (defn canvas [id width height]
   (reagent/create-class
